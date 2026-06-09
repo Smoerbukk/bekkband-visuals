@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bakgrunnsanimasjon</title>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #400EA1;
+    }
+
+    .scene {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.85;
+      will-change: transform;
+    }
+
+    .orb-1 {
+      width: 148vw;
+      height: 148vw;
+      left: -55vw;
+      top: 30vh;
+      background: radial-gradient(circle at 40% 35%, #fe3d3d 0%, #0c00bb 100%);
+      animation: drift1 12s ease-in-out infinite alternate;
+    }
+
+    .orb-2 {
+      width: 148vw;
+      height: 148vw;
+      left: 15vw;
+      top: -75vh;
+      background: radial-gradient(circle at 60% 55%, #fe3d3d 0%, #0c00bb 100%);
+      animation: drift2 15s ease-in-out infinite alternate;
+    }
+
+    .orb-3 {
+      width: 148vw;
+      height: 148vw;
+      left: 45vw;
+      top: 40vh;
+      background: radial-gradient(circle at 50% 45%, #fe3d3d 0%, #0c00bb 100%);
+      animation: drift3 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift1 {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      25%  { transform: translate(18vw, -20vh) rotate(20deg); }
+      50%  { transform: translate(-15vw, 15vh) rotate(-15deg); }
+      75%  { transform: translate(22vw, 10vh) rotate(30deg); }
+      100% { transform: translate(-10vw, -18vh) rotate(-25deg); }
+    }
+
+    @keyframes drift2 {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      25%  { transform: translate(-20vw, 22vh) rotate(-25deg); }
+      50%  { transform: translate(18vw, -15vh) rotate(18deg); }
+      75%  { transform: translate(-25vw, -10vh) rotate(-35deg); }
+      100% { transform: translate(15vw, 20vh) rotate(28deg); }
+    }
+
+    @keyframes drift3 {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      25%  { transform: translate(-18vw, -22vh) rotate(22deg); }
+      50%  { transform: translate(20vw, 18vh) rotate(-20deg); }
+      75%  { transform: translate(-12vw, 25vh) rotate(32deg); }
+      100% { transform: translate(16vw, -20vh) rotate(-28deg); }
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .content-group {
+      display: flex;
+      align-items: flex-start;
+      --certified-ratio: 0.336;
+      --layout-scale: 1.96;
+      --canvas-width: min(calc(100vw / var(--layout-scale)), calc(100vh * 1063 / 994));
+      --certified-width: calc(var(--canvas-width) * var(--certified-ratio));
+    }
+
+    .side-spacer {
+      width: var(--certified-width);
+      flex-shrink: 0;
+    }
+
+    .canvas {
+      position: relative;
+      width: var(--canvas-width);
+      height: calc(var(--canvas-width) * 994 / 1063);
+      flex-shrink: 0;
+      transform-origin: center center;
+    }
+
+    .canvas .main-illustration {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .certified-corporate {
+      width: var(--certified-width);
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .poweredby-logo {
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      width: 13vw;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="overlay">
+    <div class="content-group">
+      <div class="side-spacer" aria-hidden="true"></div>
+      <div class="canvas">
+        <img class="main-illustration" src="svg/bekkband-navn-og-ottar.svg" alt="">
+      </div>
+      <img class="certified-corporate" src="svg/certified-corporate.svg" alt="">
+    </div>
+    <img class="poweredby-logo" src="svg/poweredby-logo.svg" alt="">
+  </div>
+</body>
+</html>
